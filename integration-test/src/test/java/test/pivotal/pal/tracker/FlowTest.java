@@ -56,6 +56,8 @@ public class FlowTest {
 
     @Before
     public void setup() throws Exception {
+
+
         registrationServer.startWithDatabaseName("tracker_registration_test");
         allocationsServer.startWithDatabaseName("tracker_allocations_test");
         backlogServer.startWithDatabaseName("tracker_backlog_test");
