@@ -8,18 +8,18 @@ import java.util.concurrent.ConcurrentMap;
 
 public class ProjectClient {
 
-    private ConcurrentMap<Long, ProjectInfo> cacheMap = new ConcurrentHashMap<Long, ProjectInfo>();
+    private ConcurrentMap<Long, ProjectInfo> cacheMap = new ConcurrentHashMap<>();
     private final RestOperations restOperations;
-    private final String registrationServerEndpoint;
+    private final String endpoint;
 
     public ProjectClient(RestOperations restOperations, String registrationServerEndpoint) {
-        this.restOperations= restOperations;
-        this.registrationServerEndpoint = registrationServerEndpoint;
+        this.restOperations = restOperations;
+        this.endpoint = registrationServerEndpoint;
     }
 
     @HystrixCommand(fallbackMethod = "getProjectFromCache")
     public ProjectInfo getProject(long projectId) {
-        ProjectInfo retVal = restOperations.getForObject(registrationServerEndpoint + "/projects/" + projectId, ProjectInfo.class);
+        ProjectInfo retVal = restOperations.getForObject(endpoint + "/projects/" + projectId, ProjectInfo.class);
         cacheMap.put(projectId,retVal);
         return retVal;
     }

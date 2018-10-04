@@ -8,8 +8,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public class ProjectClient {
 
-    private ConcurrentMap<Long, ProjectInfo> cacheMap = new ConcurrentHashMap<Long, ProjectInfo>();
-
+    private ConcurrentMap<Long, ProjectInfo> cacheMap = new ConcurrentHashMap<>();
     private final RestOperations restOperations;
     private final String endpoint;
 
